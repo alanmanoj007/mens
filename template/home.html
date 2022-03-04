@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<html lang="en">
+
+<body>
+
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+
+               <span class="spinner-rotate"></span>
+
+          </div>
+     </section>
+
+
+     <!-- MENU -->
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+         <div>
+             <ul>
+                 <li>
+
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="/" class="navbar-brand">Mens Hub <span> for healthy & energetic life</span> </a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                         <li><a href="/" class="fa fa-home" style="color:black;font-size:25px"></a></li>
+<!--                         <li><a href="{% url 'cartDetails' %}" class="fa fa-shopping-cart" style="color:black;font-size:20px"></a></li>-->
+
+                         <li><a href="{% url 'register' %}" class="active" style="color:black">Registration</a></li>
+                         <li><a href="{% url 'login' %}" class="smoothScroll" style="color:black">Login</a></li>
+                         <li><a href="{% url 'logout' %}" class="smoothScroll" style="color:black">Logout</a></li>
+                             <div id="topbar" class="hoc clear">
+
+
+      <div class="fl_right">
+        <ul class="nospace">
+          <li id="searchform">
+            <div>
+              <form action="{% url 'search' %}" method="get">
+                <fieldset>
+                  <input type="text" placeholder="Enter item name" name="q" style="width:150px;border-color:red"><button type="submit"><i class="fa fa-search" style="color:red"></i> </button>
+
+                </fieldset>
+              </form>
+            </div>
+          </li>
+        </ul>
+      </div>
+  </div>
+
+
+                    </ul>
+
+               </div>
+
+          </div>
+          </li>
+        </ul>
+      </div>
+     </section>
+
+
+     <!-- HOME -->
+     <section id="home" class="slider" data-stellar-background-ratio="0.5">
+          <div class="row">
+
+                    <div class="owl-carousel owl-theme">
+                         <div class="item item-first">
+                              <div class="caption">
+                                   <div class="container" >
+                                        <div class="col-md-8 col-sm-12">
+                                             <h3>Hair care products</h3>
+                                             <h1>Best hair care products for all hair related issues. </h1>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <div class="item item-second">
+                              <div class="caption">
+                                   <div class="container">
+                                        <div class="col-md-8 col-sm-12">
+                                            <h3>Beard Products for Men</h3>
+                                             <h1>Best Beard Care Products.</h1>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <div class="item item-third">
+                              <div class="caption">
+                                   <div class="container">
+                                        <div class="col-md-8 col-sm-12">
+                                              <h3>Nutrition For Men</h3>
+                                             <h1>Best Vitamin and Protien supplements.</h1>
+
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+
+
+
+
+          </div>
+     </section>
+    <div class="dropdown">
+  <button class="dropbtn">FILTER</button>
+  <div class="dropdown-content">
+
+  <a href="/">All</a>
+    {% for i in ct %}
+  <a href={{i.get_url}}>{{i.name}}</a>
+       {% endfor %}
+  </div>
+</div>
+
+     <!-- ABOUT -->
+     <section id="about" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+
+                         <div class="about-info">
+                              <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                                <h1>Mens Hub</h1>
+                                   <h2>Helping Men live Confidently</h2>
+                              </div>
+
+                              <div class="wow fadeInUp" data-wow-delay="0.4s">
+                                   <p>Digital health Clinic for Men. We talk to men , listen to them and understand thier needs.</p>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                         <div class="wow fadeInUp about-image" data-wow-delay="0.6s">
+                              <img src="{% static 'hom/images/main2.jpg' %}" class="img-responsive" style="height:350;width:400" alt="">
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- TEAM -->
+     <section id="team" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                              <h2>Try our products</h2>
+                              <h4>They are Good and effective</h4>
+                         </div>
+                    </div>
+      {% for i in pg.object_list %}
+                    <div class="col-md-4 col-sm-4">
+                         <div class="team-thumb wow fadeInUp"  data-wow-delay="0.2s" >
+                            <a href="{{i.get_url}}"> <img src="{{i.img.url}}" class="img-responsive"  alt="" style="height:400;width:300"></a>
+
+                         </div>
+                         <div class="team-info">
+                              <a href={{i.get_url}}><h3>{{i.name}}</h3></a>
+                              <p>{{i.desc|truncatechars:17}}</p>
+                              <h4>Price:{{i.price}}rs</h4>
+
+
+                         </div>
+                    </div>
+
+
+
+
+               </div>
+               {% endfor %}
+
+          </div>
+
+
+     </section>
+
+     <!-- MENU-->
+    <center>
+
+
+     <!-- SCRIPTS -->
+     <script src="{% static 'hom/js/jquery.js' %}"></script>
+     <script src="{% static 'hom/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'hom/js/jquery.stellar.min.js' %}"></script>
+     <script src="{% static 'hom/js/wow.min.js' %}"></script>
+     <script src="{% static 'hom/js/owl.carousel.min.js' %}"></script>
+     <script src="{% static 'hom/js/jquery.magnific-popup.min.js' %}"></script>
+     <script src="{% static 'hom/js/smoothscroll.js' %}"></script>
+     <script src="{% static 'hom/js/custom.js' %}"></script>
+  {% for p in pg.paginator.page_range %}
+      <a href="?page={{p}}" class="btn-sm {% if pg.number == p %} active {% endif %}" style="color:white;font-size:150%;background-color:black">{{p}}</a>
+
+  {% endfor %}
+    </center>
+</body>
+
+</html>
+{% endblock %}
